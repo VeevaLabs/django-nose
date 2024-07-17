@@ -413,7 +413,7 @@ def _mysql_reset_sequences(style, connection):
     """Return a SQL statements needed to reset Django tables."""
     tables = connection.introspection.django_table_names(only_existing=True)
     flush_statements = connection.ops.sql_flush(
-        style, tables, connection.introspection.sequence_list()
+        style, tables, reset_sequences=connection.introspection.sequence_list()
     )
 
     # connection.ops.sequence_reset_sql() is not implemented for MySQL,
